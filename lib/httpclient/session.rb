@@ -67,7 +67,7 @@ class HTTPClient
     def to_s # :nodoc:
       addr
     end
-    
+
     # Returns true if scheme, host and port of the given URI matches with this.
     def match(uri)
       (@scheme == uri.scheme) and (@host == uri.host) and (@port == uri.port.to_i)
@@ -904,7 +904,7 @@ class HTTPClient
       buf = ''
       while true
         len = @socket.gets(RS)
-        @chunk_length = len.hex
+        @chunk_length = len.hex rescue 0
         if @chunk_length == 0
           @content_length = 0
           @socket.gets(RS)
